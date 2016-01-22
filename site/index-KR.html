@@ -50,13 +50,13 @@
         </div>
         <ul class="nav navbar-nav"> 
         <li class="dropdown"> 
-        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Countires <span class="caret"></span> </a> 
+        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 국가 <span class="caret"></span> </a> 
         <ul class="dropdown-menu" aria-labelledby="drop1"> 
-        <li><a href="index.html">Hong Kong</a></li> 
-        <li><a href="index-CN.html">China</a></li> 
-        <li><a href="index-TW.html">Taiwan</a></li>
-        <li><a href="index-KR.html">Korea</a></li> 
-        <li><a href="index-SG.html">Singapore</a></li> 
+        <li><a href="index.html">홍콩</a></li> 
+        <li><a href="index-CN.html">중국</a></li> 
+        <li><a href="index-TW.html">대만</a></li>
+        <li><a href="index-KR.html">한국</a></li> 
+        <li><a href="index-SG.html">싱가폴</a></li> 
         <!--<li role="separator" class="divider"></li> -->
         <!--<li><a href="#">Separated link</a></li> </ul> </li> -->
         </ul>
@@ -85,106 +85,195 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#gogovan-api-documentation">GoGoVan API documentation</a></li>
+        <li class="main active"><a href="#gogovan-api-documentation">GoGoVan API Specification</a></li>
         
-            <li><a href="#getting-a-quote">Getting a quote</a></li>
+            <li><a href="#getting-a-quote">거리 및 운임 확인</a></li>
         
-            <li><a href="#requesting-for-a-van">Requesting for a van</a></li>
+            <li><a href="#requesting-for-a-van">주문 요청</a></li>
         
-            <li><a href="#canceling-a-request">Canceling a request</a></li>
+            <li><a href="#canceling-a-request">주문 취소</a></li>
         
-            <li><a href="#checking-status">Checking status</a></li>
+            <li><a href="#checking-status">주문 상태 확인</a></li>
         
-            <li><a href="#getting-status-notification">Getting status notification</a></li>
-        
+            <li><a href="#getting-status-notification">상태 값</a></li>
+            
+            <li><a href="#mandatory_fields">필수 항목</a></li>
+            
+            <li><a href="#possible_attributes">사용 가능 파라미터</a></li>
+            
+            <li><a href="#api_list">API 목록</a></li>
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="gogovan-api-documentation">GoGoVan API documentation</h1>
-<h3 id="getting-a-quote">Getting a quote</h3>
-<p>Request:</p>
+<h1 id="gogovan-api-documentation">GoGoVan API Specification</h1>
+<h3 id="getting-a-quote">거리 및 운임 확인</h3>
+<p>요청:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  -F 'order[name]=John' \
-  -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-11-21T17:24:01Z' \
+  -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
+  -H 'GoGoVan-User-Language: en-US' \
+  -F 'order[name]=홍길동' \
+  -F 'order[phone_number]=01012345678' \
+  -F 'order[pickup_time]=2016-02-18T11:20:00Z' \
+  -F 'order[service_type]=transport' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/price.json'
+  -F 'order[remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
+  -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
+[37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
+  -F 'order[extra_requirements][is_raining]=true' \
+  -F 'order[extra_requirements][express_service]=true' \
+  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
-<p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
-<p>Response:</p>
+<p><code>GoGoVan-User-Language</code>는 <code>en-US</code>, <code>zh-TW</code>, <code>zh-CN 중 택일하여 사용 가능</code></p>
+<p>응답:</p>
 <pre><code lang="json">{
-   "base" : 120,
-   "total" : 230,
-   "breakdown" : {
-      "fee" : {
-         "title" : "Fee",
-         "value" : 120
-      },
-      "night_extra_charge" : {
-         "value" : 100,
-         "title" : "Night fee"
-      },
-   }
+	"breakdown":{
+		"fee":{
+			"title":"기본 요금 합계",
+			"value":67520
+		},
+
+		"extra_charge_for_raining":{
+		"title":"비가 오는 경우",
+		"value":3000
+		},
+
+		"extra_charge_for_express":{
+		"title":"급행 추가 요금",
+		"value":67520
+		},
+		
+		"multi_point_concession":{
+		"title":"경유지 할인",
+		"value":-20256
+		},
+
+		"rounded_down_discount":{
+		"title":"백원 단위 절사",
+		"value":-784
+		}
+	},
+
+	"distance_in_kms":"77.04",
+	"vehicle":"motorcycle",
+	"base":67520
 }
 </code></pre>
 
-<h3 id="requesting-for-a-van">Requesting for a van</h3>
-<p>Request:</p>
+<p><code>최종 금액</code>은 <code>base</code> + <code>extra_charges</code> - <code>multi_point_concession</code> - <code>rounded_down_discount</code></p>
+
+<h3 id="requesting-for-a-van">주문 요청</h3>
+<p>요청:</p>
 <pre><code lang="bash">curl -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  -F 'order[name]=John' \
-  -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-12-12T17:24:01Z' \
+  -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
+  -H 'GoGoVan-User-Language: en-US' \
+  -F 'order[name]=홍길동' \
+  -F 'order[phone_number]=01012345678' \
+  -F 'order[pickup_time]=2016-02-18T11:20:00Z' \
+  -F 'order[service_type]=transport' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders.json'
+  -F 'order[extra_requirements][is_raining]=true' \
+  -F 'order[extra_requirements][express_service]=true' \
+  -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
+[37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
+  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
-<p>Response:</p>
-<pre><code lang="json">{ "id": 729 }
+<p>응답:</p>
+<pre><code lang="json">{ "id": 2727 }
 </code></pre>
 
-<h3 id="canceling-a-request">Canceling a request</h3>
+<h3 id="canceling-a-request">주문 취소</h3>
 <pre><code lang="bash">curl -v -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729/cancel.json'
+  -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
+  -H 'GoGoVan-User-Language: en-US' \
+  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/2727/cancel.json'
 </code></pre>
 
-<p>The response will be just HTTP 200 OK with no response body.</p>
-<h3 id="checking-status">Checking status</h3>
-<p>Request:</p>
+<p>응답:</p>
+<p>성공 시, Body가 없는 HTTP 200 OK</p>
+<h3 id="checking-status">주문 상태 확인</h3>
+<p>요청:</p>
 <pre><code lang="bash">curl -v -X GET \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729.json'
+  -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
+  -H 'GoGoVan-User-Language: en-US' \
+  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/2727.json'
 </code></pre>
 
-<p>Response:</p>
+<p>응답:</p>
+<p>기사 미 배정</p>
 <pre><code lang="json">{
-   "name" : "John",
-   "price" : 220,
-   "id" : 729,
-   "phone_number" : "61577364",
-   "status" : "pending"
+	"id":2727,
+	"status":"pending",
+	"name":"홍길동",
+	"phone_number":"01012345678",
+	"price":69000.0
 }</code></pre>
 
-<h3 id="getting-status-notification">Getting status notification</h3>
-<p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>
-<p>It will also contain a field named <code>event</code>, with the following possible values:</p>
+<p>기사 배정</p>
+<code><pre lang="json">{
+        "id":2727,
+        "status":"active",
+        "name":"홍길동",
+        "phone_number":"01012345678",
+        "price":69000.0,
+    
+        "driver":{
+            "id":185,
+            "phone_number":"01087654321",
+            "name":"기사님",
+            "license_plate":"30주1234"
+            }
+}</code></pre>
+
+<h3 id="getting-status-notification">상태 값</h3>
+<p>HTTP JSON POST 방식을 통해 주문의 상태 확인이 가능하며, <code>status</code>는 다음과 같음</p>
 <pre>
-assigned - A driver has been assigned to the order
-completed - The order has been marked "completed" by the driver
-canelled - The order has been marked "cancelled" by the driver
+pending - 주문 요청 완료, 기사 검생 중...
+active - 해당 주문 요청에 대한 기사 배정 완료
+completed - 기사에 의한 주문 배송 완료
+canelled - 기사에 의한 주문 취소
+</pre>
+
+<h3 id="mandatory_fields">필수 항목</h3>
+<pre>
+  GoGoVan-API-Key
+  GoGoVan-User-Language
+  order[name]
+  order[phone_number]
+  order[pickup_time]
+  order[service_type]
+  order[vehicle]
+  order[remark]
+  order[locations]
+  API URL
+</pre>
+
+<h3 id="possible_attributes">사용 가능한 파라미터</h3>
+<pre>
+  <차량 종류>
+  order[vehicle]]=motorcycle / damas / labo / ton1 <오토바이 / 다마스 / 라보 / 1톤 트럭>
+    
+  <서비스 종류>
+  order[service_type]=transport / delivery <퀵 서비스 / 용달>
+  
+  <퀵 서비스 추가 요구 사항>
+  order[extra_requirements][is_raining]=true <비가 오는 경우>
+  order[extra_requirements][is_snowing]=true <눈이 오는 경우>
+  order[extra_requirements][express_service]=true <급송>
+  
+  <용달 추가 요구 사항>
+  order[extra_requirements][need_carry]=true <운반 요청>
+</pre>
+
+<h3 id="api_list">API 목록</h3>
+<pre>
+  거리 및 운임 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/price.json
+  주문 요청 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders.json
+  주문 취소 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/{order_id}/cancel.json
+  주문 상태 확인 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/{order_id}.json
 </pre></div>
         
     </div>

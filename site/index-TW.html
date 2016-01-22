@@ -106,47 +106,49 @@
 <h3 id="getting-a-quote">Getting a quote</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  -F 'order[name]=John' \
-  -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-11-21T17:24:01Z' \
-  -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/price.json'
+-H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
+-H 'GoGoVan-User-Language: zh-TW' \
+-F 'order[name]=John' \
+-F 'order[phone_number]=0919829929' \
+-F 'order[pickup_time]=2016-01-17T18:00:00Z' \
+-F 'order[vehicle]=motorcycle' \
+-F 'order[remark]=Please confirm the following 3 items:
+http://example.com/list' \
+-F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
+'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
 <p>Response:</p>
 <pre><code lang="json">{
-   "base" : 120,
-   "total" : 230,
+   "base" : 80,
+   "total" : 149,
    "breakdown" : {
       "fee" : {
-         "title" : "Fee",
-         "value" : 120
+         "title" : "運費",
+         "value" : 149
       },
       "night_extra_charge" : {
-         "value" : 100,
-         "title" : "Night fee"
+         "value" : 149,
+         "title" : "夜間附加費"
       },
    }
 }
 </code></pre>
 
-<h3 id="requesting-for-a-van">Requesting for a van</h3>
+<h3 id="{Requesting-for-a-van">Requesting for a van</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  -F 'order[name]=John' \
-  -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-12-12T17:24:01Z' \
-  -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders.json'
+-H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
+-H 'GoGoVan-User-Language: zh-TW' \
+-F 'order[name]=John' \
+-F 'order[phone_number]=0989817829' \
+-F 'order[pickup_time]=2016-01-17T18:24:01Z' \
+-F 'order[vehicle]=motorcycle' \
+-F 'order[remark]=Please confirm the following 3 items:
+http://example.com/list' \
+-F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
+'https://gogovan-staging-tw.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
 <p>Response:</p>
@@ -155,18 +157,18 @@
 
 <h3 id="canceling-a-request">Canceling a request</h3>
 <pre><code lang="bash">curl -v -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729/cancel.json'
+-H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
+-H 'GoGoVan-User-Language: zh-TW' \
+'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/1885/cancel.json'
 </code></pre>
 
 <p>The response will be just HTTP 200 OK with no response body.</p>
 <h3 id="checking-status">Checking status</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -v -X GET \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729.json'
+-H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
+-H 'GoGoVan-User-Language: zh-TW' \
+'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/1885.json'
 </code></pre>
 
 <p>Response:</p>
