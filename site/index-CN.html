@@ -46,17 +46,17 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">GoGoVan API</a>
+            <a class="navbar-brand" href=".">快狗速运API</a>
         </div>
         <ul class="nav navbar-nav"> 
         <li class="dropdown"> 
-        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Countires <span class="caret"></span> </a> 
+        <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 国家 <span class="caret"></span> </a> 
         <ul class="dropdown-menu" aria-labelledby="drop1"> 
-        <li><a href="index.html">Hong Kong</a></li> 
-        <li><a href="index-CN.html">China</a></li> 
-        <li><a href="index-TW.html">Taiwan</a></li>
-        <li><a href="index-KR.html">Korea</a></li> 
-        <li><a href="index-SG.html">Singapore</a></li> 
+        <li><a href="index.html">香港</a></li> 
+        <li><a href="index-CN_ZHCN.html">中国</a></li> 
+        <li><a href="index-TW.html">台湾</a></li>
+        <li><a href="index-KR.html">韩国</a></li> 
+        <li><a href="index-SG.html">新加坡</a></li> 
         <!--<li role="separator" class="divider"></li> -->
         <!--<li><a href="#">Separated link</a></li> </ul> </li> -->
         </ul>
@@ -85,23 +85,23 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#gogovan-api-documentation">GoGoVan API documentation</a></li>
+        <li class="main active"><a href="#gogovan-api-documentation">快狗速运API文档</a></li>
         
-            <li><a href="#getting-a-quote">Getting a quote</a></li>
+            <li><a href="#getting-a-quote">获取报价</a></li>
         
-            <li><a href="#requesting-for-a-van">Requesting for a van</a></li>
+            <li><a href="#requesting-for-a-van">请求叫一辆车</a></li>
         
-            <li><a href="#canceling-a-request">Canceling a request</a></li>
+            <li><a href="#canceling-a-request">取消订单请求</a></li>
         
-            <li><a href="#checking-status">Checking status</a></li>
+            <li><a href="#checking-status">查询订单状态</a></li>
         
-            <li><a href="#getting-status-notification">Getting status notification</a></li>
+            <li><a href="#getting-status-notification">订单状态</a></li>
             
-            <li><a href="#mandatory_fields">Mandatory fields</a></li>            
+            <li><a href="#mandatory_fields">必填项目</a></li>            
             
-            <li><a href="#possible_parameters">Possible parameters</a></li>
+            <li><a href="#possible_parameters">可能会用到的参数</a></li>
             
-            <li><a href="#api_list">API List</a></li>
+            <li><a href="#api_list">API列表</a></li>
             
         
 
@@ -113,11 +113,11 @@
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-<h1 id="gogovan-api-documentation">GoGoVan API documentation</h1>
-<h3 id="getting-a-quote">Getting a quote</h3>
-<p>Request:</p>
+<h1 id="gogovan-api-documentation">快狗速运API文档</h1>
+<h3 id="getting-a-quote">获取报价</h3>
+<p>请求:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: 90a723b8-cdaa-43f2-93fb-c3ff48697937' \
+  -H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
   -H 'GoGoVan-User-Language: zh-CN' \
   -F 'order[city]=beijing' \
   -F 'order[name]=dawei' \
@@ -125,14 +125,14 @@
   -F 'order[pickup_time]=2016-03-21T17:24:01H' \
   -F 'order[vehicle]=sbread' \
   -F 'order[extra_requirements][remark]=woshidaweila' \
+  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
   -F 'order[extra_requirements][need_carry]=true' \
-  -F 'order[extra_requirements][passenger_count]=4' \
   -F 'order[locations]=[[39.940066,116.461059,"北京市朝阳区三里屯路19号院-10号楼"],[39.907648,116.406453,"北京市东城区东交民巷44号"]]' \
   'http://gogovan-dev-cn.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
-<p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
-<p>Response:</p>
+<p><code>快狗速运-用户语言</code> 可以是 <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
+<p>回应:</p>
 <pre><code lang="json">{
     "breakdown":{
     "fee":{
@@ -147,8 +147,8 @@
 
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
-<h3 id="requesting-for-a-van">Requesting for a van</h3>
-<p>Request:</p>
+<h3 id="requesting-for-a-van">请求叫一辆车</h3>
+<p>请求:</p>
 <pre><code lang="bash">curl -X POST \
 -H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
 -H 'GoGoVan-User-Language: zh-CN' \
@@ -157,50 +157,52 @@
 -F 'order[phone_number]=14716021413' \
 -F 'order[pickup_time]=2016-01-29T20:00:00H' \
 -F 'order[vehicle]=sbread' \
+-F 'order[remark]=Please confirm the following 3 items:
+http://example.com/list' \
 -F 'order[extra_requirements][need_carry]=true' \
 -F 'order[extra_requirements][remark]=woshidaweila' \
--F 'order[extra_requirements][passenger_count]=4' \
 -F 'order[locations]=[[39.940066,116.461059,"北京市朝阳区三里屯路19号院-10号楼"],[39.907648,116.406453,"北京市东城区东交民巷44号"]]' \
 'https://gogovan-dev-cn.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
-<p>Response:</p>
+<p>回应:</p>
 <pre><code lang="json">{ "id": 4823 }
 </code></pre>
 
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
-<h3 id="canceling-a-request">Canceling a request</h3>
+<h3 id="canceling-a-request">取消订单请求</h3>
 <pre><code lang="bash">curl -v -X POST \
 -H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
 -H 'GoGoVan-User-Language: zh-CN' \
 'https://gogovan-dev-cn.herokuapp.com/api/v0/orders/4823/cancel.json'
 </code></pre>
 
-<p>Response:</p>
-<p>The response will be just HTTP 200 OK with no response body.</p>
+<p>回应:</p>
+<p>此处的回应只是会显示 <code> HTTP 200 OK </code>.</p>
 
 
 -------------------------------------------------------------------
 
-<h3 id="checking-status">Checking status</h3>
-<p>Request:</p>
+<h3 id="checking-status">查询订单状态</h3>
+<p>请求:</p>
 <pre><code lang="bash">curl -v -X GET \
--H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
+-H 'GoGoVan-API-Key: 90a723b8-cdaa-43f2-93fb-c3ff48697937' \
 -H 'GoGoVan-User-Language: zh-CN' \
-'https://gogovan-dev-cn.herokuapp.com/api/v0/orders/4846.json'
+'https://gogovan-dev-cn.herokuapp.com/api/v0/orders/4860.json'
 </code></pre>
 
-<p>Response of "cancelled"(No driver assigned yet):</p>
+<p>取消状态的回应(还没有司机接）:</p>
 <pre><code lang="json">{
     "id":4823,
     "status":"cancelled",
     "name":"dawei",
     "phone_number":"14716021413",
     "price":50.0
+    
 }</code></pre>
 
-<p>Response of "Cancelled"(assigned a driver already):</p>
+<p>取消状态的回应（已经有司机接了）:</p>
 <pre><code lang="json">{
         "id":4860,
         "status":"cancelled",
@@ -218,7 +220,7 @@
 
 
 
-<p>Response of "pending":</p>
+<p>等待司机接单状态的回应:</p>
 <pre><code lang="json">{
     "id":4846,
     "status":"pending",
@@ -227,7 +229,7 @@
     "price":50.0
 }</code></pre>
 
-<p>Response of "active":</p>
+<p>已经有司机接单状态的回应:</p>
 <pre><code lang="json">{
     "id":4846,
     "status":"active",
@@ -244,7 +246,7 @@
 
 </code></pre>
 
-<p>Response of "completed":</p>
+<p>完成订单状态的回应:</p>
 <pre><code lang="json">{
     "id":4846,
     "status":"completed",
@@ -265,9 +267,9 @@
 
 -----------------------------------------------------------------------------------------------------
 
-<h3 id="getting-status-notification">Getting status notification</h3>
-<p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>
-<p>It will also contain a field named <code>event</code>, with the following possible values:</p>
+<h3 id="getting-status-notification">订单状态</h3>
+<!--<p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>-->
+<!--<p>It will also contain a field named <code>event</code>, with the following possible values:</p>-->
 <pre>
 Pending - The order is not picked up by any driver yet
 Active - A driver has been assigned to the order
@@ -275,7 +277,7 @@ completed - The order has been marked "completed" by the driver
 canelled - The order has been marked "cancelled" by the driver
 </pre>
         
-<h3 id="mandatory_fields">Mandatory fields</h3>
+<h3 id="mandatory_fields">必填项目</h3>
 <pre>
   GoGoVan-API-Key
   GoGoVan-User-Language
@@ -290,7 +292,7 @@ canelled - The order has been marked "cancelled" by the driver
 </pre>   
         
         
-<h3 id="possible_parameters">Possible parameters</h3>
+<h3 id="possible_parameters">可能会用到的参数</h3>
 <pre>
     < City >
     order[city]=shenzhen
@@ -305,8 +307,6 @@ canelled - The order has been marked "cancelled" by the driver
     < Extra-requirements >
     需要搬运
     order[extra_requirements][need_carry]=true|false
-    跟车人数
-    order[extra_requirements][passenger_count]=0,1,2,3,4,5
     自由备注
     order[extra_requirements][remark]=woshidaweila
     
@@ -323,7 +323,7 @@ canelled - The order has been marked "cancelled" by the driver
         
         
         
-<h3 id="api_list">API List</h3>
+<h3 id="api_list">API列表</h3>
 <pre>
   Getting a quote = http://gogovan-dev-cn.herokuapp.com/api/v0/orders/price.json
   Request for a van = https://gogovan-dev-cn.herokuapp.com/api/v0/orders.json

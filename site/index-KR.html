@@ -115,14 +115,14 @@
   -H 'GoGoVan-User-Language: en-US' \
   -F 'order[name]=홍길동' \
   -F 'order[phone_number]=01012345678' \
-  -F 'order[pickup_time]=2016-02-18T11:20:00Z' \
+  -F 'order[pickup_time]=2016-02-18T11:20:00I' \
   -F 'order[service_type]=transport' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
-  -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
-[37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
   -F 'order[extra_requirements][is_raining]=true' \
   -F 'order[extra_requirements][express_service]=true' \
+  -F 'order[extra_requirements][remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
+  -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
+[37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
   'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
@@ -171,11 +171,12 @@
   -H 'GoGoVan-User-Language: en-US' \
   -F 'order[name]=홍길동' \
   -F 'order[phone_number]=01012345678' \
-  -F 'order[pickup_time]=2016-02-18T11:20:00Z' \
+  -F 'order[pickup_time]=2016-02-18T11:20:00I' \
   -F 'order[service_type]=transport' \
   -F 'order[vehicle]=motorcycle' \
   -F 'order[extra_requirements][is_raining]=true' \
   -F 'order[extra_requirements][express_service]=true' \
+  -F 'order[extra_requirements][remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
   -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
 [37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
   'https://gogovan-dev-kr.herokuapp.com/api/v0/orders.json'
@@ -231,7 +232,7 @@
 <h3 id="getting-status-notification">상태 값</h3>
 <p>HTTP JSON POST 방식을 통해 주문의 상태 확인이 가능하며, <code>status</code>는 다음과 같음</p>
 <pre>
-pending - 주문 요청 완료, 기사 검생 중...
+pending - 주문 요청 완료, 기사 검생 중
 active - 해당 주문 요청에 대한 기사 배정 완료
 completed - 기사에 의한 주문 배송 완료
 canelled - 기사에 의한 주문 취소
@@ -246,7 +247,7 @@ canelled - 기사에 의한 주문 취소
   order[pickup_time]
   order[service_type]
   order[vehicle]
-  order[remark]
+  order[extra_requirements][remark]
   order[locations]
   API URL
 </pre>

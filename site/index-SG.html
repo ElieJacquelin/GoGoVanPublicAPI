@@ -101,90 +101,223 @@
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
+--------------------------------------------------------------------------------------
 
 <h1 id="gogovan-api-documentation">GoGoVan API documentation</h1>
 <h3 id="getting-a-quote">Getting a quote</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
-  -H 'GoGoVan-User-Language: zh-TW' \
+  -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
+  -H 'GoGoVan-User-Language: en-US' \
   -F 'order[name]=John' \
   -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-11-21T17:24:01Z' \
+  -F 'order[pickup_time]=2016-01-20T18:00:00H' \
+  -F 'order[service_type]=delivery' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/price.json'
+  -F 'order[extra_requirements][express_service]=true' \
+  -F 'order[extra_requirements][remark]=Please confirm the following 3 items' \
+  -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
+  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
 <p>Response:</p>
 <pre><code lang="json">{
-   "base" : 120,
-   "total" : 230,
+   "base" : 10,
+   "total" : 35,
    "breakdown" : {
       "fee" : {
          "title" : "Fee",
-         "value" : 120
+         "value" : 30
       },
-      "night_extra_charge" : {
-         "value" : 100,
-         "title" : "Night fee"
+      
+      "extra_charge_for_express":{
+		"title":"Express service",
+		"value":3
+		},
+      
+      "multi_point_concession":{
+		"title":"Promotional Discount",
+		"value":-3
+		},
       },
    }
 }
 </code></pre>
 
+<p><code>Final price</code> <code>base</code> + <code>extra_charges</code> - <code>multi_point_concession</code>
+--------------------------------------------------------------------------------------
+
 <h3 id="requesting-for-a-van">Requesting for a van</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
+  -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
+  -H 'GoGoVan-User-Language: en-US' \
   -F 'order[name]=John' \
   -F 'order[phone_number]=61577364' \
-  -F 'order[pickup_time]=2014-12-12T17:24:01Z' \
+  -F 'order[pickup_time]=2016-02-20T18:00:00H' \
+  -F 'order[service_type]=delivery' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
-  -F 'order[locations]=[[22.312516,114.217874,"Seaview Center, 139 Hoi Bun Road, Hong Kong"],[22.282224,114.129262,"Kennedy Town, Hong Kong"]]' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders.json'
+  -F 'order[extra_requirements][express_service]=true' \
+  -F 'order[extra_requirements][remark]=Please confirm the following 3 items: http://example.com/list' \
+  -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
+  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
 <p>Response:</p>
 <pre><code lang="json">{ "id": 729 }
 </code></pre>
+--------------------------------------------------------------------------------------
 
 <h3 id="canceling-a-request">Canceling a request</h3>
 <pre><code lang="bash">curl -v -X POST \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729/cancel.json'
+  -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
+  -H 'GoGoVan-User-Language: en-US' \
+  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4354/cancel.json'
 </code></pre>
 
 <p>The response will be just HTTP 200 OK with no response body.</p>
+--------------------------------------------------------------------------------------
+
 <h3 id="checking-status">Checking status</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -v -X GET \
-  -H 'GoGoVan-API-Key: f817b69b-35cc-43d0-9eec-b5163cb87513' \
-  -H 'GoGoVan-User-Language: zh-TW' \
-  'https://gogovan-staging-kr.herokuapp.com/api/v0/orders/729.json'
+  -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
+  -H 'GoGoVan-User-Language: en-US' \
+  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4361.json'
 </code></pre>
 
-<p>Response:</p>
+<p>Response of "cancelled"(No driver assigned yet):</p>
 <pre><code lang="json">{
-   "name" : "John",
-   "price" : 220,
-   "id" : 729,
-   "phone_number" : "61577364",
-   "status" : "pending"
+    "id":4361,
+    "status":"cancelled",
+    "name":"John",
+    "phone_number":"61577364",
+    "price":50.0
 }</code></pre>
+
+<p>Response of "Cancelled"(assigned a driver already):</p>
+<pre><code lang="json">{
+        "id":4361,
+        "status":"cancelled",
+        "name":"John",
+        "phone_number":"61577364",
+        "price":50.0,
+        
+    "driver":{
+        "id":42,
+        "phone_number":"61577364",
+        "name":"alex",
+        "license_plate":"ss6666"}
+
+}</code></pre>
+
+
+
+<p>Response of "pending":</p>
+<pre><code lang="json">{
+    "id":4361,
+    "status":"pending",
+    "name":"John",
+    "phone_number":"61577364",
+    "price":50.0
+}</code></pre>
+
+<p>Response of "active":</p>
+<pre><code lang="json">{
+    "id":4361,
+    "status":"active",
+    "name":"John",
+    "phone_number":"61577364",
+    "price":50.0,
+
+    "driver":{
+    "id":95,
+    "phone_number":"61575555",
+    "name":"Alex",
+    "license_plate":"ss6666"
+}
+
+</code></pre>
+
+<p>Response of "completed":</p>
+<pre><code lang="json">{
+    "id":4361,
+    "status":"completed",
+    "name":"John",
+    "phone_number":"61577364",
+    "price":50.0,
+
+    "driver":{
+    "id":95,
+    "phone_number":"61575555",
+    "name":"Alex",
+    "license_plate":"ss6666"
+}
+</code></pre>
+--------------------------------------------------------------------------------------
 
 <h3 id="getting-status-notification">Getting status notification</h3>
 <p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>
 <p>It will also contain a field named <code>event</code>, with the following possible values:</p>
 <pre>
+Pending - The order is not picked up by any driver yet
 assigned - A driver has been assigned to the order
 completed - The order has been marked "completed" by the driver
 canelled - The order has been marked "cancelled" by the driver
+</pre>
+--------------------------------------------------------------------------------------
+
+<h3 id="mandatory_fields">Mandatory fields</h3>
+<pre>
+  GoGoVan-API-Key
+  GoGoVan-User-Language
+  order[name]
+  order[phone_number]
+  order[pickup_time]
+  order[vehicle]
+  order[locations]
+  API URL
+</pre>
+--------------------------------------------------------------------------------------
+
+<h3 id="possible_parameters">Possible parameters</h3>
+<pre>
+    
+    < Extra-requirements >
+    1 hour Express Delivery
+    order[extra_requirements][express_service]=true
+    Additional Mover ($xx)
+    order[extra_requirements][additional_helpers]=true
+    Ride with Goods
+    order[extra_requirements][passenger_count]=true
+    Trolley 
+    order[extra_requirements][need_cart]=true
+    Covered Lorry
+    order[extra_requirements][need_covered_truck]=true
+    Tailgate (+$5)
+    order[extra_requirements][need_tailgate]=true
+    Refrigerated (+$5)
+    order[extra_requirements][need_refrigeration]=true
+    Transport Pets
+    order[extra_requirements][need_pet]=true
+    
+    < Vehicle >
+    order[vehicle]=motorcycle
+    order[vehicle]=sedan
+    order[vehicle]=van
+    order[vehicle]=10ft
+    order[vehicle]=14ft
+    order[vehicle]=24ft
+</pre>
+--------------------------------------------------------------------------------------
+
+<h3 id="api_list">API List</h3>
+<pre>
+  Getting a quote = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/price.json
+  Request for a van = https://gogovan-staging-sg.herokuapp.com/api/v0/orders.json
+  Cancelling a request = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}/cancel.json
+  Checking status = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}.json
 </pre></div>
         
     </div>

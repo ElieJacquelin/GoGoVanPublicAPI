@@ -112,7 +112,7 @@
 -F 'order[phone_number]=0919829929' \
 -F 'order[pickup_time]=2016-01-17T18:00:00Z' \
 -F 'order[vehicle]=motorcycle' \
--F 'order[remark]=Please confirm the following 3 items:
+-F 'order[extra_requirements][remark]=Please confirm the following 3 items:
 http://example.com/list' \
 -F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
 'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/price.json'
@@ -136,7 +136,7 @@ http://example.com/list' \
 }
 </code></pre>
 
-<h3 id="{Requesting-for-a-van">Requesting for a van</h3>
+<h3 id="{requesting-for-a-van">Requesting for a van</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X POST \
 -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
@@ -145,7 +145,7 @@ http://example.com/list' \
 -F 'order[phone_number]=0989817829' \
 -F 'order[pickup_time]=2016-01-17T18:24:01Z' \
 -F 'order[vehicle]=motorcycle' \
--F 'order[remark]=Please confirm the following 3 items:
+-F 'order[extra_requirements][remark]=Please confirm the following 3 items:
 http://example.com/list' \
 -F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
 'https://gogovan-staging-tw.herokuapp.com/api/v0/orders.json'
