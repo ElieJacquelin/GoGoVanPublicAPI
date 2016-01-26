@@ -85,7 +85,7 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#gogovan-api-documentation">GoGoVan API documentation - SG</a></li>
+        <li class="main active"><a href="#gogovan-api-documentation">GoGoVan API documentation</a></li>
         
             <li><a href="#getting-a-quote">Getting a quote</a></li>
         
@@ -103,7 +103,7 @@
         <div class="col-md-9" role="main">
 --------------------------------------------------------------------------------------
 
-<h1 id="gogovan-api-documentation">GoGoVan API documentation</h1>
+<h1 id="gogovan-api-documentation">GoGoVan API documentation - SG</h1>
 <h3 id="getting-a-quote">Getting a quote</h3>
 <p>Request:</p>
 <pre><code lang="bash">curl -X GET \
@@ -159,13 +159,13 @@
   -F 'order[service_type]=delivery' \
   -F 'order[vehicle]=motorcycle' \
   -F 'order[extra_requirements][express_service]=true' \
-  -F 'order[extra_requirements][remark]=Please confirm the following 3 items: http://example.com/list' \
+  -F 'order[extra_requirements][remark]=Please confirm the following 3 items' \
   -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
   'https://gogovan-staging-sg.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
 <p>Response:</p>
-<pre><code lang="json">{ "id": 729 }
+<pre><code lang="json">{ "id": 4361 }
 </code></pre>
 --------------------------------------------------------------------------------------
 
@@ -173,7 +173,7 @@
 <pre><code lang="bash">curl -v -X POST \
   -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
   -H 'GoGoVan-User-Language: en-US' \
-  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4354/cancel.json'
+  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4361/cancel.json'
 </code></pre>
 
 <p>The response will be just HTTP 200 OK with no response body.</p>
@@ -287,21 +287,7 @@ canelled - The order has been marked "cancelled" by the driver
     < Extra-requirements >
     1 hour Express Delivery
     order[extra_requirements][express_service]=true
-    Additional Mover ($xx)
-    order[extra_requirements][additional_helpers]=true
-    Ride with Goods
-    order[extra_requirements][passenger_count]=true
-    Trolley 
-    order[extra_requirements][need_cart]=true
-    Covered Lorry
-    order[extra_requirements][need_covered_truck]=true
-    Tailgate (+$5)
-    order[extra_requirements][need_tailgate]=true
-    Refrigerated (+$5)
-    order[extra_requirements][need_refrigeration]=true
-    Transport Pets
-    order[extra_requirements][need_pet]=true
-    
+
     < Vehicle >
     order[vehicle]=motorcycle
     order[vehicle]=sedan
