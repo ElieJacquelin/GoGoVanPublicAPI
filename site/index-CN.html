@@ -117,31 +117,33 @@
 <h3 id="getting-a-quote">获取报价</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
+  -H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
   -H 'GoGoVan-User-Language: zh-CN' \
-  -F 'order[city]=beijing' \
+  -F 'order[city]=guangzhou' \
   -F 'order[name]=dawei' \
   -F 'order[phone_number]=14716021413' \
   -F 'order[pickup_time]=2016-03-21T17:24:01H' \
   -F 'order[vehicle]=sbread' \
   -F 'order[extra_requirements][remark]=woshidaweila' \
-  -F 'order[remark]=Please confirm the following 3 items: http://example.com/list' \
   -F 'order[extra_requirements][need_carry]=true' \
-  -F 'order[locations]=[[39.940066,116.461059,"北京市朝阳区三里屯路19号院-10号楼"],[39.907648,116.406453,"北京市东城区东交民巷44号"]]' \
-  'http://gogovan-dev-cn.herokuapp.com/api/v0/orders/price.json'
+  -F 'order[title_prefix]=企业月结订单' \
+  -F 'order[locations]=[[23.138319,113.247416,"周门北路28号荔天大厦619"],[23.187244,113.284768,"白云大道南783号"]]' \
+  'http://gogovan-staging-cn.herokuapp.com/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>快狗速运-用户语言</code> 可以是 <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
 <p>回应:</p>
 <pre><code lang="json">{
-    "breakdown":{
-    "fee":{
+    "breakdown":
+    {"fee":{
     "title":"车费",
-    "value":50}
+    "value":59}
     },
     
-    "distance_in_kms":"8.381",
-    "base":50
+    "distance_in_kms":"11.686",
+    "travel_time":"1820",
+    "base":59
+    
     }
 </code></pre>
 
@@ -150,36 +152,35 @@
 <h3 id="requesting-for-a-van">请求叫一辆车</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -X POST \
--H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
 -H 'GoGoVan-User-Language: zh-CN' \
--F 'order[city]=beijing' \
+-F 'order[city]=guangzhou' \
 -F 'order[name]=dawei' \
 -F 'order[phone_number]=14716021413' \
--F 'order[pickup_time]=2016-01-29T20:00:00H' \
+-F 'order[pickup_time]=2016-03-29T20:00:00H' \
 -F 'order[vehicle]=sbread' \
--F 'order[remark]=Please confirm the following 3 items:
-http://example.com/list' \
 -F 'order[extra_requirements][need_carry]=true' \
 -F 'order[extra_requirements][remark]=woshidaweila' \
--F 'order[locations]=[[39.940066,116.461059,"北京市朝阳区三里屯路19号院-10号楼"],[39.907648,116.406453,"北京市东城区东交民巷44号"]]' \
-'https://gogovan-dev-cn.herokuapp.com/api/v0/orders.json'
+-F 'order[title_prefix]=企业月结订单' \
+-F 'order[locations]=[[23.138319,113.247416,"周门北路28号荔天大厦619"],[23.187244,113.284768,"白云大道南783号"]]' \
+'https://gogovan-staging-cn.herokuapp.com/api/v0/orders.json'
 </code></pre>
 
 <p>回应:</p>
-<pre><code lang="json">{ "id": 4823 }
+<pre><code lang="json">{ "id": 5293 }
 </code></pre>
 
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
 <h3 id="canceling-a-request">取消订单请求</h3>
 <pre><code lang="bash">curl -v -X POST \
--H 'GoGoVan-API-Key: 5ccaee19-f269-423c-ae6b-5382b079c92f' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
 -H 'GoGoVan-User-Language: zh-CN' \
-'https://gogovan-dev-cn.herokuapp.com/api/v0/orders/4823/cancel.json'
+'https://gogovan-staging-cn.herokuapp.com/api/v0/orders/5293/cancel.json'
 </code></pre>
 
 <p>回应:</p>
-<p>此处的回应只是会显示 <code> HTTP 200 OK </code>.</p>
+<p>此处的回应只是会显示 <code> HTTP/1.1 200 OK </code>.</p>
 
 
 -------------------------------------------------------------------
@@ -187,78 +188,81 @@ http://example.com/list' \
 <h3 id="checking-status">查询订单状态</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -v -X GET \
--H 'GoGoVan-API-Key: 90a723b8-cdaa-43f2-93fb-c3ff48697937' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
 -H 'GoGoVan-User-Language: zh-CN' \
-'https://gogovan-dev-cn.herokuapp.com/api/v0/orders/4860.json'
+'https://gogovan-staging-cn.herokuapp.com/api/v0/orders/5293.json'
 </code></pre>
 
 <p>取消状态的回应(还没有司机接）:</p>
 <pre><code lang="json">{
-    "id":4823,
+    "id":5293,
     "status":"cancelled",
     "name":"dawei",
     "phone_number":"14716021413",
-    "price":50.0
+    "price":59.0
     
 }</code></pre>
 
 <p>取消状态的回应（已经有司机接了）:</p>
 <pre><code lang="json">{
-        "id":4860,
-        "status":"cancelled",
-        "name":"dawei",
-        "phone_number":"14716021413",
-        "price":50.0,
-        
-    "driver":{
-        "id":42,
-        "phone_number":"11495759138",
-        "name":"carla",
-        "license_plate":"957591380"}
+    "id":5293,
+    "status":"cancelled",
+    "name":"dawei",
+    "phone_number":"14716021413",
+    "price":59.0,
 
+    "driver":{
+    "id":238,
+    "phone_number":"14716021413",
+    "name":"David",
+    "license_plate":"粤13445",
+    "location":"22.312606,114.221638"
+    
 }</code></pre>
 
 
 
 <p>等待司机接单状态的回应:</p>
 <pre><code lang="json">{
-    "id":4846,
+    "id":5293,
     "status":"pending",
     "name":"dawei",
     "phone_number":"14716021413",
-    "price":50.0
+    "price":59.0
 }</code></pre>
 
 <p>已经有司机接单状态的回应:</p>
 <pre><code lang="json">{
-    "id":4846,
+    "id":5293,
     "status":"active",
     "name":"dawei",
     "phone_number":"14716021413",
-    "price":50.0,
+    "price":59.0,
 
     "driver":{
-    "id":95,
-    "phone_number":"13246640532",
-    "name":"莱纳",
-    "license_plate":"粤A88888"
+    "id":238,
+    "phone_number":"14716021413",
+    "name":"David",
+    "license_plate":"粤13445",
+    "location":"22.312606,114.221638"
 }
 
 </code></pre>
 
 <p>完成订单状态的回应:</p>
 <pre><code lang="json">{
-    "id":4846,
+    "id":5293,
     "status":"completed",
     "name":"dawei",
     "phone_number":"14716021413",
-    "price":50.0,
+    "price":59.0,
 
     "driver":{
-    "id":95,
-    "phone_number":"13246640532",
-    "name":"莱纳",
-    "license_plate":"粤A88888"
+    "id":238,
+    "phone_number":"14716021413",
+    "name":"David",
+    "license_plate":"粤A12345"
+    ,"location":"22.312613,114.221584"
 }
 </code></pre>
 
@@ -268,8 +272,8 @@ http://example.com/list' \
 -----------------------------------------------------------------------------------------------------
 
 <h3 id="getting-status-notification">订单状态</h3>
-<!--<p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>-->
-<!--<p>It will also contain a field named <code>event</code>, with the following possible values:</p>-->
+<p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>
+<p>It will also contain a field named <code>event</code>, with the following possible values:</p>
 <pre>
 Pending - The order is not picked up by any driver yet
 Active - A driver has been assigned to the order
@@ -287,6 +291,7 @@ canelled - The order has been marked "cancelled" by the driver
   order[pickup_time]
   order[vehicle]
   order[locations]
+  order[title_prefix]
   //The location of start point should be within the [city] 
   API URL
 </pre>   
@@ -299,7 +304,7 @@ canelled - The order has been marked "cancelled" by the driver
     order[city]=guangzhou
     order[city]=dongguan
     order[city]=foshan
-    order[city]=beijing
+    order[city]=guangzhou
     order[city]=shanghai
     order[city]=qingdao
     order[city]=wuhan
@@ -318,17 +323,17 @@ canelled - The order has been marked "cancelled" by the driver
     order[vehicle]=mtruck
     order[vehicle]=ltruck
     order[vehicle]=sltruck
-
+    各城市所支持的车型请参照：http://www.kuaigou.co/pricing
 </pre>             
         
         
         
 <h3 id="api_list">API列表</h3>
 <pre>
-  Getting a quote = http://gogovan-dev-cn.herokuapp.com/api/v0/orders/price.json
-  Request for a van = https://gogovan-dev-cn.herokuapp.com/api/v0/orders.json
-  Cancelling a request = https://gogovan-dev-cn.herokuapp.com/api/v0/orders/{order_id}/cancel.json
-  Checking status = https://gogovan-dev-cn.herokuapp.com/api/v0/orders/{order_id}.json
+  Getting a quote = http://gogovan-staging-cn.herokuapp.com/api/v0/orders/price.json
+  Request for a van = https://gogovan-staging-cn.herokuapp.com/api/v0/orders.json
+  Cancelling a request = https://gogovan-staging-cn.herokuapp.com/api/v0/orders/{order_id}/cancel.json
+  Checking status = https://gogovan-staging-cn.herokuapp.com/api/v0/orders/{order_id}.json
 </pre></div>
         
         
