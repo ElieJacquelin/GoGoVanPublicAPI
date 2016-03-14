@@ -1,4 +1,4 @@
-」<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -177,14 +177,78 @@
   'https://gogovan-staging.herokuapp.com/api/v0/orders/1018406.json'
 </code></pre>
 
-<p>Response:</p>
+<p>Response of "cancelled"(No driver assigned yet):</p>
 <pre><code lang="json">{
    "id" : 1018406,
    "status" : "cancelled",
    "name" : "Din",
    "phone_number" : "98765432",
-   "price" : 140
+   "price":140
 }</code></pre>
+
+<p>Response of "Cancelled"(assigned a driver already):</p>
+<pre><code lang="json">{
+        "id":1018406,
+        "status":"cancelled",
+        "name":"Din",
+        "phone_number":"98765432",
+        "price":140.0,
+        
+    "driver":{
+        "id":908,
+        "phone_number":"98745632",
+        "name":"So",
+        "license_plate":"HK"
+        "location":"22.3135379,114.2214031"}
+        }
+
+}</code></pre>
+
+
+
+<p>Response of "pending":</p>
+<pre><code lang="json">{
+    "id":1018406,
+    "status":"pending",
+    "name":"Din",
+    "phone_number":"98765432",
+    "price":140.0
+}</code></pre>
+
+<p>Response of "active":</p>
+<pre><code lang="json">{
+    "id":1018406,
+    "status":"active",
+    "name":"Din",
+    "phone_number":"98765432",
+    "price":140.0,
+
+    "driver":{
+    "id":908,
+    "phone_number":"98745632",
+    "name":"So",
+    "license_plate":"HK"
+    "location":"22.3135379,114.2214031"}
+}
+
+</code></pre>
+
+<p>Response of "completed":</p>
+<pre><code lang="json">{
+    "id":1018406,
+    "status":"completed",
+    "name":"Din",
+    "phone_number":"98765432",
+    "price":140.0,
+
+    "driver":{
+    "id":908,
+    "phone_number":"98745632",
+    "name":"So",
+    "license_plate":"HK"
+    "location":"22.3135379,114.2214031"}
+}
+</code></pre>
 
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
@@ -223,7 +287,7 @@ canelled - The order has been marked "cancelled" by the driver
     need_over_6ft
     order[extra_requirements][need_over_6ft]=true|false
     remove_net
-    order[extra_requirements][remove_net]="half" | "full"
+    order[extra_requirements][remove_net]=half|full
     need_carry
     order[extra_requirements][need_carry]=true|false
     need_waste
