@@ -117,7 +117,7 @@
 <h3 id="getting-a-quote">获取报价</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -X GET \
-  -H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
+  -H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8' \
   -H 'GoGoVan-User-Language: zh-CN' \
   -F 'order[city]=guangzhou' \
   -F 'order[name]=dawei' \
@@ -152,7 +152,7 @@
 <h3 id="requesting-for-a-van">请求叫一辆车</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -X POST \
--H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8' \
 -H 'GoGoVan-User-Language: zh-CN' \
 -F 'order[city]=guangzhou' \
 -F 'order[name]=dawei' \
@@ -174,7 +174,7 @@
 
 <h3 id="canceling-a-request">取消订单请求</h3>
 <pre><code lang="bash">curl -v -X POST \
--H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8' \
 -H 'GoGoVan-User-Language: zh-CN' \
 'https://gogovan-staging-cn.herokuapp.com/api/v0/orders/5293/cancel.json'
 </code></pre>
@@ -188,7 +188,7 @@
 <h3 id="checking-status">查询订单状态</h3>
 <p>请求:</p>
 <pre><code lang="bash">curl -v -X GET \
--H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8a' \
+-H 'GoGoVan-API-Key: cec96471-6e91-47d1-ac34-74c694d46e8' \
 -H 'GoGoVan-User-Language: zh-CN' \
 'https://gogovan-staging-cn.herokuapp.com/api/v0/orders/5294.json'
 </code></pre>
