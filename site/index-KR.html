@@ -230,7 +230,7 @@
 }</code></pre>
 
 <h3 id="getting-status-notification">상태 값</h3>
-<p>HTTP JSON POST 방식을 통해 주문의 상태 확인이 가능하며, <code>status</code>는 다음과 같음</p>
+<!--<p>HTTP JSON POST 방식을 통해 주문의 상태가 변경 시 마다 지정된 URL 호출이 가능하며, <code>상태 값</code>은 다음과 같음</p>-->
 <pre>
 pending - 주문 요청 완료, 기사 검생 중
 active - 해당 주문 요청에 대한 기사 배정 완료
@@ -255,7 +255,7 @@ canelled - 기사에 의한 주문 취소
 <h3 id="possible_attributes">사용 가능한 파라미터</h3>
 <pre>
   <차량 종류>
-  order[vehicle]]=motorcycle / damas / labo / ton1 <오토바이 / 다마스 / 라보 / 1톤 트럭>
+  order[vehicle]]=motorcycle / damas / labo / ton1 ton1_2_and_ton1_4 <오토바이 / 다마스 / 라보 / 1톤 트럭 / 1.2&1.4톤 트럭>
     
   <서비스 종류>
   order[service_type]=transport / delivery <퀵 서비스 / 용달>

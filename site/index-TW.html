@@ -95,7 +95,7 @@
         
             <li><a href="#checking-status">Checking status</a></li>
         
-            <!--<li><a href="#getting-status-notification">Getting status notification</a></li>-->
+            <li><a href="#getting-status-notification">Getting status notification</a></li>
         
     
     </ul>
@@ -180,14 +180,21 @@ http://example.com/list' \
    "status" : "pending"
 }</code></pre>
 
-<!--<h3 id="getting-status-notification">Getting status notification</h3>
+<pre>
+Pending - The order is not picked up by any driver yet
+assigned - A driver has been assigned to the order
+completed - The order has been marked "completed" by the driver
+canelled - The order has been marked "cancelled" by the driver
+</pre>
+
+<h3 id="getting-status-notification">Getting status notification</h3>
 <p>An HTTP JSON POST request will be made to a designated URL when the status of an Order changed. It will contain the response in the format of <em>checking status</em>.</p>
 <p>It will also contain a field named <code>event</code>, with the following possible values:</p>
 <pre>
 assigned - A driver has been assigned to the order
 completed - The order has been marked "completed" by the driver
 canelled - The order has been marked "cancelled" by the driver
-</pre>--></div>
+</pre></div>
         
     </div>
 
