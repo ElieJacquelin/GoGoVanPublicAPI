@@ -159,7 +159,8 @@
   -F 'order[pickup_time]=2016-02-20T18:00:00H' \
   -F 'order[service_type]=delivery' \
   -F 'order[vehicle]=motorcycle' \
-  -F 'order[title_prefix]=Corp Monthly Order' \
+  -F 'order[title_prefix]=Corporate Order' \
+  -F 'order[bonus]=20' \
   -F 'order[extra_requirements][express_service]=true' \
   -F 'order[extra_requirements][remark]=Please confirm the following 3 items' \
   -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
@@ -311,6 +312,11 @@ canelled - The order has been marked "cancelled" by the driver
   Cancelling a request = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}/cancel.json
   Checking status = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}.json
 </pre></div>
+
+
+--------------------------------------------------------------------------------------
+
+<p> Last Update: 2017-03-09 12:49 (by Tom)</p>
         
     </div>
 
