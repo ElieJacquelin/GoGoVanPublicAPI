@@ -123,7 +123,7 @@
   -F 'order[extra_requirements][remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
   -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
 [37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
-  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/price.json'
+  'https://stag-kr.gogovan.tech/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>GoGoVan-User-Language</code>는 <code>en-US</code>, <code>zh-TW</code>, <code>zh-CN 중 택일하여 사용 가능</code></p>
@@ -179,7 +179,7 @@
   -F 'order[extra_requirements][remark]=받는 분 : 김실장(010-1234-5678), 먼저 연락주세요' \
   -F 'order[locations]=[[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"],
 [37.2288589,127.17216080000003,"서울특별시 강남구 역삼동 720-9"],[37.4921936,127.02867949999995,"서울특별시 서초구 서초동 1337-1"]]' \
-  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders.json'
+  'https://stag-kr.gogovan.tech/api/v0/orders.json'
 </code></pre>
 
 <p>응답:</p>
@@ -190,7 +190,7 @@
 <pre><code lang="bash">curl -v -X POST \
   -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
   -H 'GoGoVan-User-Language: en-US' \
-  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/2727/cancel.json'
+  'https://stag-kr.gogovan.tech/api/v0/orders/2727/cancel.json'
 </code></pre>
 
 <p>응답:</p>
@@ -200,7 +200,7 @@
 <pre><code lang="bash">curl -v -X GET \
   -H 'GoGoVan-API-Key: a2c29f56-be11-4822-9f6f-8b62338ac782' \
   -H 'GoGoVan-User-Language: en-US' \
-  'https://gogovan-dev-kr.herokuapp.com/api/v0/orders/2727.json'
+  'https://stag-kr.gogovan.tech/api/v0/orders/2727.json'
 </code></pre>
 
 <p>응답:</p>
@@ -271,10 +271,10 @@ canelled - 기사에 의한 주문 취소
 
 <h3 id="api_list">API 목록</h3>
 <pre>
-  거리 및 운임 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/price.json
-  주문 요청 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders.json
-  주문 취소 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/{order_id}/cancel.json
-  주문 상태 확인 = https://gogovan-dev-kr.herokuapp.com/api/v0/orders/{order_id}.json
+  거리 및 운임 = https://stag-kr.gogovan.tech/api/v0/orders/price.json
+  주문 요청 = https://stag-kr.gogovan.tech/api/v0/orders.json
+  주문 취소 = https://stag-kr.gogovan.tech/api/v0/orders/{order_id}/cancel.json
+  주문 상태 확인 = https://stag-kr.gogovan.tech/api/v0/orders/{order_id}.json
 </pre></div>
         
     </div>
