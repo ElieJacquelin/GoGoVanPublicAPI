@@ -117,7 +117,7 @@
   -F 'order[extra_requirements][express_service]=true' \
   -F 'order[extra_requirements][remark]=Please confirm the following 3 items' \
   -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
-  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/price.json'
+  'https://stag-sg.gogovan.tech/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
@@ -163,7 +163,7 @@
   -F 'order[extra_requirements][express_service]=true' \
   -F 'order[extra_requirements][remark]=Please confirm the following 3 items' \
   -F 'order[locations]=[[1.333948, 103.840142,"Toa Payoh, Singapore"],[1.353945, 103.843884,"5G Jalan Berjaya, Singapore"]]' \
-  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders.json'
+  'https://stag-sg.gogovan.tech/api/v0/orders.json'
 </code></pre>
 
 <p>Response:</p>
@@ -175,7 +175,7 @@
 <pre><code lang="bash">curl -v -X POST \
   -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
   -H 'GoGoVan-User-Language: en-US' \
-  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4361/cancel.json'
+  'https://stag-sg.gogovan.tech/api/v0/orders/4361/cancel.json'
 </code></pre>
 
 <p>The response will be just HTTP 200 OK with no response body.</p>
@@ -186,7 +186,7 @@
 <pre><code lang="bash">curl -v -X GET \
   -H 'GoGoVan-API-Key: 3af4ba76-3767-4963-9680-327bb6d391d1' \
   -H 'GoGoVan-User-Language: en-US' \
-  'https://gogovan-staging-sg.herokuapp.com/api/v0/orders/4361.json'
+  'https://stag-sg.gogovan.tech/api/v0/orders/4361.json'
 </code></pre>
 
 <p>Response of "cancelled"(No driver assigned yet):</p>
@@ -306,10 +306,10 @@ canelled - The order has been marked "cancelled" by the driver
 
 <h3 id="api_list">API List</h3>
 <pre>
-  Getting a quote = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/price.json
-  Request for a van = https://gogovan-staging-sg.herokuapp.com/api/v0/orders.json
-  Cancelling a request = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}/cancel.json
-  Checking status = https://gogovan-staging-sg.herokuapp.com/api/v0/orders/{order_id}.json
+  Getting a quote = https://stag-sg.gogovan.tech/api/v0/orders/price.json
+  Request for a van = https://stag-sg.gogovan.tech/api/v0/orders.json
+  Cancelling a request = https://stag-sg.gogovan.tech/api/v0/orders/{order_id}/cancel.json
+  Checking status = https://stag-sg.gogovan.tech/api/v0/orders/{order_id}.json
 </pre></div>
 
 --------------------------------------------------------------------------------------

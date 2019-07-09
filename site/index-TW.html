@@ -115,7 +115,7 @@
 -F 'order[extra_requirements][remark]=Please confirm the following 3 items:
 http://example.com/list' \
 -F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
-'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/price.json'
+'https://stag-tw.gogovan.tech/api/v0/orders/price.json'
 </code></pre>
 
 <p><code>GoGoVan-User-Language</code> can be <code>en-US</code> <code>zh-TW</code> <code>zh-CN</code></p>
@@ -148,7 +148,7 @@ http://example.com/list' \
 -F 'order[extra_requirements][remark]=Please confirm the following 3 items:
 http://example.com/list' \
 -F 'order[locations]=[[25.0552809,121.544679,"台北市松山區興安街174巷6號1樓"],[25.1344639,121.506923,"台北市北投區溫泉路68巷24號1樓"]]' \
-'https://gogovan-staging-tw.herokuapp.com/api/v0/orders.json'
+'https://stag-tw.gogovan.tech/api/v0/orders.json'
 </code></pre>
 
 <p>Response:</p>
@@ -159,7 +159,7 @@ http://example.com/list' \
 <pre><code lang="bash">curl -v -X POST \
 -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
 -H 'GoGoVan-User-Language: zh-TW' \
-'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/1885/cancel.json'
+'https://stag-tw.gogovan.tech/api/v0/orders/1885/cancel.json'
 </code></pre>
 
 <p>The response will be just HTTP 200 OK with no response body.</p>
@@ -168,7 +168,7 @@ http://example.com/list' \
 <pre><code lang="bash">curl -v -X GET \
 -H 'GoGoVan-API-Key: b87d2da0-d333-4dbd-b984-b7d05d232fa3' \
 -H 'GoGoVan-User-Language: zh-TW' \
-'https://gogovan-staging-tw.herokuapp.com/api/v0/orders/1885.json'
+'https://stag-tw.gogovan.tech/api/v0/orders/1885.json'
 </code></pre>
 
 <p>Response:</p>
